@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'posts',
     'users',
     'bootstrap5',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
