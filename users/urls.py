@@ -7,8 +7,15 @@ from . import views
 urlpatterns = [
      path('signup/', views.user_signup_form),
      path('loginin/', views.user_signin_form),
-     path('index/', views.homeview),
-     path('post/',views.post_thoughts)
+     # path('index/', views.homeview),
+     path('getuser/<id>/',views.get_user),
+     path('deluseruser/<id>/',views.delete_user),
+     path('edit/<id>/',views.update_user),
+
+     
+     # path('post/',views.post_thoughts),
+     # path("user/<pk>/", UserDetailView.as_view(), name="user-detail"),
+
     #  path('update-tweet/', views.update_tweet),
     #  path('created/',views.createform_html),
     #  path('shared_with/',views.shared_with),
