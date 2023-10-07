@@ -6,8 +6,9 @@ from . import views
 
 urlpatterns = [
      path('signup/', views.user_signup_form),
-    #  path('view-tweet/', views.view_tweet),
-    #  path('delete-tweet/', views.delete_tweet),
+     path('loginin/', views.user_signin_form),
+     path('index/', views.homeview),
+     path('post/',views.post_thoughts)
     #  path('update-tweet/', views.update_tweet),
     #  path('created/',views.createform_html),
     #  path('shared_with/',views.shared_with),
