@@ -55,12 +55,15 @@ def user_signin_form(request):
             passw = signin.cleaned_data["password"]
                     
             user = authenticate(request, username=usern, password=passw)
-            user.check_password(passw)
+            print()
+            check_password = user.check_password(passw)
+            print("Checking password")
+            print(check_password)
             if user is not None:
-                        login(request, user)
-                        return HttpResponse("login success")
+                login(request, user)
+                return HttpResponse("login success")
             else:
-                        return HttpResponse("Not valid")
+                return HttpResponse("Not valid")
     else:
             return render(request,"users/signup_and_signin.html",{"signin":signin })
             
@@ -110,6 +113,7 @@ def update_user(request, id):
                     user.set_password(password)
                     user.email= email
                     user.phone_number = phone_number
+                    user.save()
                 else:
                         return render(request,"users/user_detail.html",{"signup":form })
                 

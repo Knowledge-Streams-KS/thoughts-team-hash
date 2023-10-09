@@ -5,8 +5,8 @@ from . import views
 
 
 urlpatterns = [
-    #  path('create-tweet/', views.create_tweet),
-    #  path('view-tweet/', views.view_tweet),
+     path('create-post/<id>', views.createform_html),
+     path('view-posts/<id>/', views.view_posts_all),
     #  path('delete-tweet/', views.delete_tweet),
     #  path('update-tweet/', views.update_tweet),
     #  path('created/',views.createform_html),
