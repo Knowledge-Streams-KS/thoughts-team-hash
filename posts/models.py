@@ -15,5 +15,3 @@ class Post(models.Model):
     media = models.FileField(upload_to= image_file_handler,blank= True)
     shared_with = models.ManyToManyField(User,related_name= "shared")
     is_public = True
-
-    

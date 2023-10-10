@@ -3,6 +3,9 @@ from .forms import form_for_thoughts
 from .models import Post
 from django.http import JsonResponse , HttpResponse
 from users.models import User
+from django.views.generic.edit import CreateView
+from .models import Post
+
 # Create your views here.
 
 
@@ -32,3 +35,5 @@ def view_posts_all(request, user_id):
     user = User.objects.get(id = user_id)
     post = Post.objects.all(user =user)
     return HttpResponse(post)
+
+
