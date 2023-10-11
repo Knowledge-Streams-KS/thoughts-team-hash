@@ -1,0 +1,11 @@
+<div class="card mt-3">
+    <div class="card-body">
+        <h2>Update Comment:</h2>
+        <form method="post" action="{% url 'update_comment' comment.id %}">
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Update Comment</button>
+        </form>
+    </div>
+</div>

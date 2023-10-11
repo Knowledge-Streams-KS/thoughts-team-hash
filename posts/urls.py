@@ -20,6 +20,12 @@ urlpatterns = [
 
      # path('done/',views.createform_html),
 
+#Comments
+     path('add_comment/<int:id>/', views.add_comment, name='add_comment'),
+     path('retrieve_comments/<int:id>/', views.retrieve_comments, name='retrieve_comments'),
+     path('update_comment/<int:post_id>/', views.update_comment, name='update_comment'),
+
+     path('delete_comment/<int:post_id>/<int:comment_id>/', views.delete_comment, name='delete_comment'),
 
 
 ]

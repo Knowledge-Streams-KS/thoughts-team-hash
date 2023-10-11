@@ -13,3 +13,6 @@ class form_for_thoughts(forms.Form):
     file = forms.FileField()
     is_public = forms.ChoiceField(choices = privacy )
    
+
+class CommentForm(forms.Form):
+    text = forms.CharField(label="Your Comment..", required=True, widget=forms.Textarea())
