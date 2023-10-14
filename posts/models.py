@@ -18,7 +18,9 @@ class Post(models.Model):
     content = models.CharField(max_length=450)
     created_at = models.DateTimeField(auto_now_add=True)
     media = models.FileField(upload_to= image_file_handler,blank= True)
-    shared_with = models.ManyToManyField(User,related_name= "shared")
+    
+    shared_with = models.ManyToManyField(User,related_name= "shared_posts", blank=True)
+    
     is_public = True
     comments = models.ManyToManyField(Comment, related_name='post_comments', blank=True)
 

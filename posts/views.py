@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import form_for_thoughts, CommentForm
+from .forms import form_for_thoughts, CommentForm, PostShareForm
 from .models import Post, Comment
 from django.http import JsonResponse , HttpResponse
 from users.models import User
@@ -37,7 +37,7 @@ def view_posts_all(request, user_id):
 
 #Creating Comments!
 #@csrf_exempt
-@login_required  
+#@login_required  
 def add_comment(request, id):
     post = get_object_or_404(Post, id=id)
 
@@ -91,7 +91,7 @@ def update_comment(request, post_id):
 
     if request.method == "POST":
         if comment: 
-            form = CommentForm(request.POST, instance=comment)
+            form = CommentForm(request.POST)
         else:
             form = CommentForm(request.POST)
         
@@ -118,3 +118,27 @@ def delete_comment(request, post_id, comment_id):
         return HttpResponse("Comment successfully deleted.")
     else:
         return HttpResponse("You do not have permission to delete this comment.")
+
+#Sharing Posts*******************
+def sharePost(request):
+    if request.method == "GET":
+        form = PostShareForm()
+        return render(request,"posts/post_share.html",{"form":form})
+    
+    if request.method =="POST":
+        form = PostShareForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            user_id = form.cleaned_data['user_id']
+            
+            post = Post.objects.get(name=name)
+            user = get_object_or_404(User, pk=user_id)
+
+            all_posts = user.shared_posts.all()
+            if post in all_posts:
+                return HttpResponse(f'Post {post.name} already shared')
+            else:
+                share = user.shared_posts.add(post)
+                return HttpResponse(f"Post {post.name} shared Successfully.")
+        else:    
+            return render(request,"posts/post_share.html",{"form":form})
