@@ -330,7 +330,8 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../../pages/documentation/documentation.html">
-              <i class="typcn typcn-document-text menu-icon"></i>
+              <i class="typcn typcn-document-text menu-ico
+              n"></i>
               <span class="menu-title">Documentation</span>
             </a>
           </li>
@@ -355,18 +356,14 @@
                 <div class="card-body">
                   <h4 class="card-title">Post your thoughts</h4>
                   
-                  <form method="post" class="forms-sample">
-                    
-{% csrf_token %}
+                  <!-- <form action = "/posts/create-post/{{user.id}}" class="forms-sample">
+                    {% csrf_token %}
+
                     <div class="form-group">
-                      <label for="  exampleInputName1">Name</label>
+                      <label for="exampleInputName1">Name</label>
                       {% render_field form.name  class="form-control" id="exampleInputName1" %}
                     </div>
                     
-                    <div class="form-group">
-                      <label for="  exampleInputName1">user</label>
-                      {% render_field form.user  class="form-control" id="exampleInputName1" %}
-                    </div>
                     
                     <div class="form-group">
                       <label for="exampleSelectGender">Privacy</label>
@@ -392,7 +389,25 @@
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
+                  </form> -->
+
+
+
+                  {% for object in object_list %} 
+                  <!-- Display Objects -->
+                  <li>{{ object.name }}</li> 
+                  <li>{{ object.content }}</li> 
+                  <form method="post" action="/posts/deleteview/{{object.id}}/">
+                    {% csrf_token %}
+                     <button type="submit"> Delete </button>               
+
                   </form>
+                  
+                  <a href="{% url 'UpdateView' object.pk %}">Update</a>
+
+                  <hr/> 
+                  <!-- If object_list is empty  --> 
+                  {% endfor %} 
                 </div>
               </div>
             </div>
