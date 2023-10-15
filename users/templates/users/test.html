@@ -61,9 +61,11 @@
 											<div class="form-group">
 
 
-                                                <form action="/users/signup/" method="post">
+
+                                                <form method="post">
                                                     {% csrf_token %}
-													{% render_field signup.username  class="form-style" placeholder="UserName" %}
+													{{ form.as_p }}
+													<!-- {% render_field signup.username  class="form-style" placeholder="UserName" %}
 												<i class="input-icon uil uil-user"></i>
 											</div>	
 											
@@ -88,7 +90,7 @@
 												{% render_field signup.password   class="form-style" placeholder="Password" %}
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
-											
+											 -->
 											<button type="submit" class="btn mt-4">Register </button>
 											
                                         </form>

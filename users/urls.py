@@ -5,12 +5,21 @@ from . import views
 
 
 urlpatterns = [
-     path('signup/', views.user_signup_form),
-     path('loginin/', views.user_signin_form),
-     # path('index/', views.homeview),
-     path('getuser/<id>/',views.get_user),
-     path('deluseruser/<id>/',views.delete_user),
-     path('edit/<id>/',views.update_user),
+     # path('signup/', views.user_signup_form),
+     path("create/user/", UserCreateView.as_view(), name="create-user"),
+     path('getuser/<int:pk>/', UserDisplayView.as_view(), name = 'get_user'),
+     path('deleteuser/<int:pk>/',UserDeleteView.as_view()),
+     path('edit/<pk>/',UserUpdateView.as_view(), name = 'edit'),
+
+     path('loginin/', views.user_signin_form , name = 'create-user'),
+
+
+     path("user/profile/", ProfileCreateView.as_view(), name="create-profile"),
+     path('get/profile/<int:pk>/', ProfileDisplayView.as_view(), name = 'get_user_profile'),
+     path('delete/user-profile/<int:pk>/',ProfileDeleteView.as_view()),
+     path('edit/profile/<pk>/',ProfileUpdateView.as_view(), name = 'edit-profile'),
+
+
 
      
      # path('post/',views.post_thoughts),

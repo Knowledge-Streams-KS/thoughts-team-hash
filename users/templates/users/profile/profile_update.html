@@ -1,57 +1,56 @@
 {% load widget_tweaks %}
-
-
 <!DOCTYPE html>
 <html lang="en">
+  <head>
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Thoughts</title>
-  {% load static %}  
-  <!-- base:css -->
-  <link rel="stylesheet" href="{% static 'vendors/typicons.font/font/typicons.css' %}">
-  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <link rel="stylesheet" href="{% static 'vendors/select2/select2.min.css' %}">
-  <link rel="stylesheet" href="{% static 'vendors/select2-bootstrap-theme/select2-bootstrap.min.css' %}">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
-</head>
 
-<body>
-  <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thoughts</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="{% static 'vendors/typicons.font/font/typicons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject --> 
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+    <!-- endinject -->
+   
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+  </head>
+  <body>
+    <!-- <div class="row" id="proBanner">
+      <div class="col-12">
+        <span class="d-flex align-items-center purchase-popup">
+          <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
+          <a href="https://www.bootstrapdash.com/product/celestial-admin-template/?utm_source=organic&utm_medium=banner&utm_campaign=free-preview" target="_blank" class="btn download-button purchase-button ml-auto">Upgrade To Pro</a>
+          <i class="typcn typcn-delete-outline" id="bannerClose"></i>
+        </span>
+      </div>
+    </div> -->
+  
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="../../index.html"><img src="{% static 'images/logo.svg' %}" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{% static 'images/logo-mini.svg' %}" alt="logo"/></a>
+          <a class="navbar-brand brand-logo" href="index.html"><img src="{% static 'images/logo.svg' %}" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/logo-mini.svg' %}" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                Calendar
-              </a>
-            </li>
-            <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link active" href="#">
-                Statistic
-              </a>
-            </li>
-            <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                Employee
-              </a>
-            </li>
+           
+            <input class="form-control" style="width: 350px; margin-left: 180px;" >
+            <button >Search</button>
+            
           </ul>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item d-none d-lg-flex  mr-2">
@@ -86,7 +85,7 @@
                     <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
                     </h6>
                     <p class="font-weight-light small-text mb-0">
-                      New product launch
+                     New product launch
                     </p>
                   </div>
                 </a>
@@ -174,10 +173,10 @@
           </button>
         </div>
       </nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_settings-panel.html -->
-      <div class="theme-setting-wrapper">
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
           <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
           <div id="theme-settings" class="settings-panel">
             <i class="settings-close typcn typcn-delete-outline"></i>
@@ -202,10 +201,9 @@
             </div>
           </div>
         </div>
-      <!-- partial -->
-      <!-- partial:../../partials/_sidebar.html -->
-      
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <div class="d-flex sidebar-profile">
@@ -215,7 +213,7 @@
               </div>
               <div class="sidebar-profile-name">
                 <p class="sidebar-name">
-                  Kenneth Osborne
+                  {{user.username}}
                 </p>
                 <p class="sidebar-designation">
                   Welcome
@@ -235,24 +233,19 @@
             <p class="sidebar-menu-title">Dash menu</p>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="index.html">
               <i class="typcn typcn-device-desktop menu-icon"></i>
-              <span class="menu-title">Dashboard <span class="badge badge-primary ml-3">New</span></span>
+              <span class="menu-title">Dashboard </span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="{% url 'create-post' user.id %}">
               <i class="typcn typcn-briefcase menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
-              <i class="typcn typcn-chevron-right menu-arrow"></i>
+              <span class="menu-title">Dashboard </span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
+          </li>
+          
+          
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
@@ -260,11 +253,6 @@
               <span class="menu-title">Form elements</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="form-elements">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="../../pages/forms/basic_elements.html">Basic Elements</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
@@ -274,7 +262,7 @@
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/charts/chartjs.html">ChartJs</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
               </ul>
             </div>
           </li>
@@ -286,7 +274,7 @@
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/tables/basic-table.html">Basic table</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
               </ul>
             </div>
           </li>
@@ -298,7 +286,7 @@
             </a>
             <div class="collapse" id="icons">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/icons/mdi.html">Mdi icons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
               </ul>
             </div>
           </li>
@@ -310,8 +298,8 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
               </ul>
             </div>
           </li>
@@ -323,13 +311,13 @@
             </a>
             <div class="collapse" id="error">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/documentation/documentation.html">
+            <a class="nav-link" href="pages/documentation/documentation.html">
               <i class="typcn typcn-document-text menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
@@ -344,88 +332,118 @@
           <li class="nav-item"><a href="#" class="nav-link">#Growth</a></li>
         </ul>
       </nav>
-      
-      <!-- partial -->
-      <div class="main-panel">        
-        <div class="content-wrapper">
-          <div class="row">
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0 font-weight-bold">{{object.username}}</h3>
+                
+              </div>
+             </div>
+             
            
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Post your thoughts</h4>
-                  
-                  <form action = "/posts/create-post/{{user.id}}" class="forms-sample">
-                    {% csrf_token %}
-                    <div class="form-group">
-                      <label for="exampleInputName1">Name</label>
-                      {% render_field form.name  class="form-control" id="exampleInputName1" %}
+              <div class="col-lg-8 d-flex grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="card-title mb-3">Profile</h4>
                     </div>
-                    
-                    
-                    <div class="form-group">
-                      <label for="exampleSelectGender">Privacy</label>
-                      {% render_field  form.is_public  class="form-control" id="exampleSelectGender" %}
-                       
-                      </div>
-                    <div class="form-group">
-                      <label>File upload</label>
-                      {% render_field  form.file   name="img[]" class="file-upload-default" %}
-                      
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                       
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                      </div>
-                    </div>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                             
+                             
+                              <div class="col-12 grid-margin stretch-card">
+                                
+                                  <div class="card-body">
+                            
+                              
+                                    <form method="post" class="forms-sample">
+                                     {% csrf_token %}
+                                     {{form.as_p}}
+                                      <!-- <div class="form-group"> -->
+                                        <!-- <label for="exampleInputName1">Username</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.username}}" >
+                                        
+                                      </div>
 
-                    <div class="form-group">
-                      <label for="exampleTextarea1">Content</label>
-                      {% render_field  form.content  class="form-control" id="exampleTextarea1" rows="4" %}
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                  </form>
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail3">First Name</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.first_name}}" >
+                                        
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail3">Last Name</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.email}}" >
+                                        
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail3">Email</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.email}}" >
+                                        
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword4">Password</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="**********" >
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail3">Phone Number</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.phone_number}}" >
+                                        
+                                      </div> -->
+                                       
+                                      <button type="submit" class="btn btn-primary mr-2" value="Update" >Update</button>
+                                    </form>
+                                       <button class="btn btn-light"><a href="/users/deleteuser/{{object.id}}/">Deactivate</a></button>
+                                    
+                                  </div>
+                                
+                              </div>
+                            
+                            </td>
+                           
                 </div>
               </div>
             </div>
-          
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        <!-- <footer class="footer">
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <!-- <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
               <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com</a> 2020</span>
               <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard </a>templates from Bootstrapdash.com</span>
             </div>
           </footer> -->
-        <!-- partial -->
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
       </div>
-      <!-- main-panel ends -->
+      <!-- page-body-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-  <!-- base:js -->
-  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="{% static 'js/off-canvas.js' %}"></script>
-  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
-  <script src="{% static 'js/settings.js' %}"></script>
-  <script src="{% static 'js/todolist.js' %}"></script>
-  <script src="{% static 'js/template.js' %}"></script>
-  <!-- endinject -->
-  <!-- plugin js for this page -->
-  <script src="{% static 'vendors/typeahead.js/typeahead.bundle.min.js' %}"></script>
-  <script src="{% static 'vendors/select2/select2.min.js' %}"></script>
-  <!-- End plugin js for this page -->
-  <!-- Custom js for this page-->
-  <script src="{% static 'js/file-upload.js' %}"></script>
-  <script src="{% static 'js/typeahead.js' %}"></script>
-  <script src="{% static 'js/select2.js' %}"></script>
-  <!-- End custom js for this page-->
-</body>
-
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="{% static 'js/off-canvas.js' %}"></script>
+    <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'js/template.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/todolist.js' %}"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <script src="{% static 'vendors/progressbar.js/progressbar.min.js' %}"></script>
+    <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <!-- End custom js for this page-->
+  </body>
 </html>

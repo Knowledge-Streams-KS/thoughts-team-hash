@@ -246,22 +246,17 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html">
               <i class="typcn typcn-device-desktop menu-icon"></i>
-              <span class="menu-title">Dashboard <span class="badge badge-primary ml-3">New</span></span>
+              <span class="menu-title">Dashboard </span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="{% url 'create-post' user.id %}">
               <i class="typcn typcn-briefcase menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
-              <i class="typcn typcn-chevron-right menu-arrow"></i>
+              <span class="menu-title">Dashboard </span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
+          </li>
+          
+          
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
@@ -376,47 +371,46 @@
                                 
                                   <div class="card-body">
                             
-                                    {% csrf_token %}
-                              
-                                    <form action="/users/edit/{{user.id}}" class="forms-sample">
+                                   <form  class="forms-sample">
+                                     {% csrf_token %}
+                                 
                                       <div class="form-group">
-                                        <label for="exampleInputName1">Username</label>
-                                        <input  class="form-control" id="exampleInputEmail3" placeholder="{{user.username}}">
+                                         <label for="exampleInputName1">Bio</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.bio}}" readonly>
                                         
                                       </div>
 
                                       <div class="form-group">
-                                        <label for="exampleInputEmail3">First Name</label>
-                                        <input  class="form-control" id="exampleInputEmail3" placeholder="{{user.first_name}}">
+                                        <label for="exampleInputEmail3">city</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.city}}" readonly>
                                         
                                       </div>
                                       <div class="form-group">
-                                        <label for="exampleInputEmail3">Last Name</label>
-                                        <input  class="form-control" id="exampleInputEmail3" placeholder="{{user.email}}">
+                                        <label for="exampleInputEmail3">Date of Birth</label>
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.dob}}" readonly>
                                         
                                       </div>
-
+                                        <!--
                                       <div class="form-group">
                                         <label for="exampleInputEmail3">Email</label>
-                                        <input  class="form-control" id="exampleInputEmail3" placeholder="{{user.email}}">
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.email}}" >
                                         
                                       </div>
 
                                       <div class="form-group">
                                         <label for="exampleInputPassword4">Password</label>
-                                        <input  class="form-control" id="exampleInputEmail3" placeholder="**********">
+                                        <input  class="form-control" id="exampleInputEmail3" value="**********" >
                                       </div>
                                       <div class="form-group">
                                         <label for="exampleInputEmail3">Phone Number</label>
-                                        <input  class="form-control" id="exampleInputEmail3" placeholder="{{user.phone_number}}">
+                                        <input  class="form-control" id="exampleInputEmail3" value="{{object.phone_number}}" >
                                         
-                                      </div>
-                                      
-                                      
+                                      </div> -->
+<!--                                        
+                                      <button type="submit" class="btn btn-primary mr-2" value="Update" >Update</button>
+                                    </form> -->
+                                       <!-- <button class="btn btn-light"><a href="/users/deleteuser/{{object.id}}/">Deactivate</a></button> -->
                                     
-                                      <button type="submit" class="btn btn-primary mr-2">Update</button>
-                                       <button class="btn btn-light"><a href="/users/deluseruser/{{user.id}}/">Deactivate</a></button>
-                                    </form>
                                   </div>
                                 
                               </div>
