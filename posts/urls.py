@@ -1,13 +1,19 @@
 from django.contrib import admin
 from django.urls import path
 from .views import *
+from django.views.generic.edit import CreateView
+
 from . import views
 
 
 urlpatterns = [
-     path('create-post/<id>', views.createform_html, name ='create-post'),
-     path('view-posts/<id>/', views.view_posts_all),
-    #  path('delete-tweet/', views.delete_tweet),
+     # path('create-post/<id>', views.createform_html),
+     # path('view-posts/<id>/', views.view_posts_all),
+     path('view/all/posts/',PostDisplayView.as_view(), name = 'all-product'),
+     path('createview/', PostCreateView.as_view(), name='CreateView'),
+     path('updateview/<int:pk>/', PostUpdateView.as_view(), name= 'UpdateView'),
+     path('deleteview/<int:pk>/', PostDeleteView.as_view(), name='deleteview'),
+     path('detailview/<int:pk>', PostDetailView.as_view()),
     #  path('update-tweet/', views.update_tweet),
     #  path('created/',views.createform_html),
     #  path('shared_with/',views.shared_with),
@@ -20,6 +26,13 @@ urlpatterns = [
 
      # path('done/',views.createform_html),
 
+#Comments
+     path('add_comment/<int:id>/', views.add_comment, name='add_comment'),
+     path('retrieve_comments/<int:id>/', views.retrieve_comments, name='retrieve_comments'),
+     path('update_comment/<int:post_id>/', views.update_comment, name='update_comment'),
 
+     path('delete_comment/<int:post_id>/<int:comment_id>/', views.delete_comment, name='delete_comment'),
 
+#SharePosts
+     path('sharePost/', views.sharePost, name='sharePost'),
 ]

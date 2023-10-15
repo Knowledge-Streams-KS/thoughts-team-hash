@@ -344,59 +344,68 @@
           <li class="nav-item"><a href="#" class="nav-link">#Growth</a></li>
         </ul>
       </nav>
-      
-      <!-- partial -->
-      <div class="main-panel">        
-        <div class="content-wrapper">
-          <div class="row">
-           
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Post your thoughts</h4>
-                  
-                  <form method="post" class="forms-sample">
-                    
-{% csrf_token %}
-                    <div class="form-group">
-                      <label for="  exampleInputName1">Name</label>
-                      {% render_field form.name  class="form-control" id="exampleInputName1" %}
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="  exampleInputName1">user</label>
-                      {% render_field form.user  class="form-control" id="exampleInputName1" %}
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="exampleSelectGender">Privacy</label>
-                      {% render_field  form.is_public  class="form-control" id="exampleSelectGender" %}
-                       
-                      </div>
-                    <div class="form-group">
-                      <label>File upload</label>
-                      {% render_field  form.file   name="img[]" class="file-upload-default" %}
-                      
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                       
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                      </div>
-                    </div>
 
-                    <div class="form-group">
-                      <label for="exampleTextarea1">Content</label>
-                      {% render_field  form.content  class="form-control" id="exampleTextarea1" rows="4" %}
+<!-- <form method="post" class="post-form">
+    {% csrf_token %}
+   
+    {{ form.name }}
+     {{ form.user_id }}
+    <button type="submit" >Share Post</button>
+</form> -->
+
+<!-- <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <form method="post" style="max-width: 400px;">
+        {% csrf_token %}
+        
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.name.id_for_label }}" style="font-weight: bold;">Name of post:</label>
+            {{ form.name }}
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.user_id.id_for_label }}" style="font-weight: bold;">User ID:</label>
+            {{ form.user_id }}
+        </div>
+        
+        <button type="submit" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; cursor: pointer;">Share Post</button>
+    </form>
+</div> -->
+
+
+
+<div class="main-panel">        
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Share thoughts</h4>
+                        
+                        <form method="post" class="post-form">
+                            {% csrf_token %}
+                            
+                            <div class="form-group">
+                                <label for="exampleInputName1">Post Name</label>
+                                {{ form.name }}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exampleTextarea1">Select User ID</label>
+                                {{ form.user_id }}
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Share Post</button>
+                            <!-- <button type="submit" class="btn btn-primary mr-2">Submit</button> -->
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                  </form>
                 </div>
-              </div>
             </div>
-          
+        </div>
+    </div>
+</div>
+
+
+  
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <!-- <footer class="footer">
@@ -406,31 +415,31 @@
             </div>
           </footer> -->
         <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- main-panel ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- base:js -->
-  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="{% static 'js/off-canvas.js' %}"></script>
-  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
-  <script src="{% static 'js/settings.js' %}"></script>
-  <script src="{% static 'js/todolist.js' %}"></script>
-  <script src="{% static 'js/template.js' %}"></script>
-  <!-- endinject -->
-  <!-- plugin js for this page -->
-  <script src="{% static 'vendors/typeahead.js/typeahead.bundle.min.js' %}"></script>
-  <script src="{% static 'vendors/select2/select2.min.js' %}"></script>
-  <!-- End plugin js for this page -->
-  <!-- Custom js for this page-->
-  <script src="{% static 'js/file-upload.js' %}"></script>
-  <script src="{% static 'js/typeahead.js' %}"></script>
-  <script src="{% static 'js/select2.js' %}"></script>
-  <!-- End custom js for this page-->
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- base:js -->
+<script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="{% static 'js/off-canvas.js' %}"></script>
+<script src="{% static 'js/hoverable-collapse.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+<script src="{% static 'js/todolist.js' %}"></script>
+<script src="{% static 'js/template.js' %}"></script>
+<!-- endinject -->
+<!-- plugin js for this page -->
+<script src="{% static 'vendors/typeahead.js/typeahead.bundle.min.js' %}"></script>
+<script src="{% static 'vendors/select2/select2.min.js' %}"></script>
+<!-- End plugin js for this page -->
+<!-- Custom js for this page-->
+<script src="{% static 'js/file-upload.js' %}"></script>
+<script src="{% static 'js/typeahead.js' %}"></script>
+<script src="{% static 'js/select2.js' %}"></script>
+<!-- End custom js for this page-->
 </body>
 
 </html>

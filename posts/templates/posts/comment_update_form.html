@@ -344,93 +344,17 @@
           <li class="nav-item"><a href="#" class="nav-link">#Growth</a></li>
         </ul>
       </nav>
-      
-      <!-- partial -->
-      <div class="main-panel">        
-        <div class="content-wrapper">
-          <div class="row">
-           
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Post your thoughts</h4>
-                  
-                  <form method="post" class="forms-sample">
-                    
-{% csrf_token %}
-                    <div class="form-group">
-                      <label for="  exampleInputName1">Name</label>
-                      {% render_field form.name  class="form-control" id="exampleInputName1" %}
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="  exampleInputName1">user</label>
-                      {% render_field form.user  class="form-control" id="exampleInputName1" %}
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="exampleSelectGender">Privacy</label>
-                      {% render_field  form.is_public  class="form-control" id="exampleSelectGender" %}
-                       
-                      </div>
-                    <div class="form-group">
-                      <label>File upload</label>
-                      {% render_field  form.file   name="img[]" class="file-upload-default" %}
-                      
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                       
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                      </div>
-                    </div>
 
-                    <div class="form-group">
-                      <label for="exampleTextarea1">Content</label>
-                      {% render_field  form.content  class="form-control" id="exampleTextarea1" rows="4" %}
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        <!-- <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com</a> 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard </a>templates from Bootstrapdash.com</span>
-            </div>
-          </footer> -->
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h2>Update Comment:</h2>
+        <form method="post" action="{% url 'update_comment' comment.id %}">
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Update Comment</button>
+        </form>
     </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-  <!-- base:js -->
-  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="{% static 'js/off-canvas.js' %}"></script>
-  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
-  <script src="{% static 'js/settings.js' %}"></script>
-  <script src="{% static 'js/todolist.js' %}"></script>
-  <script src="{% static 'js/template.js' %}"></script>
-  <!-- endinject -->
-  <!-- plugin js for this page -->
-  <script src="{% static 'vendors/typeahead.js/typeahead.bundle.min.js' %}"></script>
-  <script src="{% static 'vendors/select2/select2.min.js' %}"></script>
-  <!-- End plugin js for this page -->
-  <!-- Custom js for this page-->
-  <script src="{% static 'js/file-upload.js' %}"></script>
-  <script src="{% static 'js/typeahead.js' %}"></script>
-  <script src="{% static 'js/select2.js' %}"></script>
-  <!-- End custom js for this page-->
-</body>
+</div>
 
-</html>
