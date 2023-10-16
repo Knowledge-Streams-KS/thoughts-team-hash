@@ -202,7 +202,7 @@ class PostDisplayView(ListView):
         template_name = '/posts/post_list.html'
 
         def get_queryset(self):
-             user = User.objects.get(id = 3)
+             user = User.objects.get(id = 29)
              posts = Post.objects.filter(user = user)
              return posts
         

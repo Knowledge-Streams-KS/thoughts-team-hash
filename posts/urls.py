@@ -9,7 +9,7 @@ from . import views
 urlpatterns = [
      # path('create-post/<id>', views.createform_html),
      # path('view-posts/<id>/', views.view_posts_all),
-     path('view/all/posts/',PostDisplayView.as_view(), name = 'all-product'),
+     path('view/all/posts/',PostDisplayView.as_view(), name = 'all-product'),   #login setup requried 
      path('createview/', PostCreateView.as_view(), name='CreateView'),
      path('updateview/<int:pk>/', PostUpdateView.as_view(), name= 'UpdateView'),
      path('deleteview/<int:pk>/', PostDeleteView.as_view(), name='deleteview'),

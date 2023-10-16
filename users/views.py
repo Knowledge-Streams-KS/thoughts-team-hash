@@ -4,6 +4,10 @@ from .models import User
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import CreateView,DeleteView,UpdateView
 from django.views.generic.detail import DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
+
 
 
 
@@ -13,8 +17,10 @@ class UserCreateView(CreateView):
     model = User
     fields = ["username", "email","password","phone_number","first_name","last_name"]
     success_url = "/users/getuser/{id}"    
-    template_name = "users/signup_and_signin_form.html"
+    template_name = "users/user_form.html"
     
+    
+
 
 class UserDisplayView(DetailView):
         model = User
@@ -27,7 +33,6 @@ class UserDisplayView(DetailView):
 #     success_url = "/loginin/" 
 #     # form_class = ProfileUpdateForm  
 #     # template_name= "users/profile_update.html"
-from django.urls import reverse
 # from .forms import UserUpdateForm
 class UserUpdateView(UpdateView):
     model = User
@@ -50,19 +55,19 @@ def user_signin_form(request):
     if request.method == "GET":
         signin = User_Signin_form()
         
-        return render(request,"users/signup_and_signin_form.html",{"signin":signin})
+        return render(request,"users/login.html",{"signin":signin})
 
 
 
     if request.method == "POST":
     
         signin = User_Signin_form(request.POST)
-        
-        username = request.POST["username"]
-        password = request.POST["password"]   
+        if signin.is_valid():
+             username = signin.cleaned_data["username"]
+             password= signin.cleaned_data["password"]
        
     else:
-            return render(request,"users/signup_and_signin_form.html",{"signin":signin })
+            return render(request,"users/login.html",{"signin":signin })
             
 
     return login_user(request,username,password)
@@ -73,11 +78,15 @@ def login_user(request,username,password):
     if user is not None:
         login(request, user)
         user_name = User.objects.get( username = user.username)
-        return redirect(f"/users/getuser/{user_name.id}")
+        return redirect(f"/users/getuser/{request.id}")
     else:
         return HttpResponse("Not valid")
       
 
+
+# def logout_view(request):
+#     logout(request)
+#     success_url = "/users/loginin/"
 
 
 def post_thoughts(request):
