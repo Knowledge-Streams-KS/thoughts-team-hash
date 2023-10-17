@@ -10,23 +10,25 @@ class User_Signup_form(ModelForm):
     class Meta:
         model = User
         fields = ["username", "email","password","phone_number","first_name","last_name"]
+from django import forms
 
 
 
-class User_Signin_form(ModelForm):
+class User_Signin_form(forms.Form):
     """
     This is a form that takes data from user and validates that
     used to sign in a existing user on website
     it will take username, password
     """
-    class Meta:
-        model = User
-        fields = ["username","password"]
+    # class Meta:
+    #     model = User
+    #     fields = ["username","password"]
+    username = forms.CharField(label="Username", max_length=100)
+    password = forms.CharField(label="Password")
 
-from django import forms
 
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['phone_number']
+        fields = ["username", "email","phone_number","first_name","last_name"]

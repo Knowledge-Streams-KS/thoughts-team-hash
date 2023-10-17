@@ -47,21 +47,10 @@
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                Calendar
-              </a>
-            </li>
-            <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link active" href="#">
-                Statistic
-              </a>
-            </li>
-            <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                Employee
-              </a>
-            </li>
+           
+            <input class="form-control" style="width: 350px; margin-left: 180px;" >
+            <button >Search</button>
+            
           </ul>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item d-none d-lg-flex  mr-2">
@@ -172,7 +161,7 @@
                 <i class="typcn typcn-cog text-primary"></i>
                 Settings
                 </a>
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="/users/logout/">
                 <i class="typcn typcn-power text-primary"></i>
                 Logout
                 </a>
@@ -244,51 +233,50 @@
             <p class="sidebar-menu-title">Dash menu</p>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
               <i class="typcn typcn-device-desktop menu-icon"></i>
-              <span class="menu-title">Dashboard </span>
+              <span class="menu-title">Home </span>
+              <!-- Every Users posts -->
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'create-post' user.id %}">
+            <a class="nav-link" href="{% url 'CreateThought' %}">
               <i class="typcn typcn-briefcase menu-icon"></i>
-              <span class="menu-title">Dashboard </span>
+              <span class="menu-title">Create Post </span>
             </a>
           </li>
           
           
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="typcn typcn-film menu-icon"></i>
-              <span class="menu-title">Form elements</span>
+              <span class="menu-title">My </span>
               <i class="menu-arrow"></i>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/users/get/profile/{{object.id}}">
+              <i class="typcn typcn-device-desktop menu-icon"></i>
+              <span class="menu-title">Profile </span>
+              <!-- Every Users posts -->
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
               <i class="typcn typcn-chart-pie-outline menu-icon"></i>
-              <span class="menu-title">Charts</span>
+              <span class="menu-title">My Posts</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#public">Public</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#private">Private</a></li>
+              
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="typcn typcn-th-small-outline menu-icon"></i>
-              <span class="menu-title">Tables</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="tables">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-              </ul>
-            </div>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
               <i class="typcn typcn-compass menu-icon"></i>
@@ -342,6 +330,16 @@
           <li class="nav-item"><a href="#" class="nav-link">#Marketing</a></li>
           <li class="nav-item"><a href="#" class="nav-link">#Growth</a></li>
         </ul>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="/posts/display_posts//">
+            <i class="typcn typcn-compass menu-icon"></i>
+            <span class="menu-title">All Posts</span>
+            <!-- Every Users posts -->
+          </a>
+        </li>
+
       </nav>
         <!-- partial -->
         <div class="main-panel">
