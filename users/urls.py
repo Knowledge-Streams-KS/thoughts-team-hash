@@ -5,19 +5,23 @@ from . import views
 
 
 urlpatterns = [
+    
      # path('signup/', views.user_signup_form),
      path("create/user/", UserCreateView.as_view(), name="create-user"),
-     path('getuser/<int:pk>/', UserDisplayView.as_view(), name = 'get_user'),
-     path('deleteuser/<int:pk>/',UserDeleteView.as_view()),
-     path('edit/<pk>/',UserUpdateView.as_view(), name = 'edit'),
+     path('getuser/<int:pk>/', login_required(UserDisplayView.as_view()), name = 'get_user'),
+     path('deleteuser/<int:pk>/',login_required(UserDeleteView.as_view())),
+     path('edit/<pk>/',login_required(UserUpdateView.as_view()), name = 'edit'),
+
+     path('home/', views.index , name = 'index'),
 
      path('loginin/', views.user_signin_form , name = 'create-user'),
+     path('logout/', views.logout_view , name = 'logout-user'),
 
 
-     path("user/profile/", ProfileCreateView.as_view(), name="create-profile"),
-     path('get/profile/<int:pk>/', ProfileDisplayView.as_view(), name = 'get_user_profile'),
-     path('delete/user-profile/<int:pk>/',ProfileDeleteView.as_view()),
-     path('edit/profile/<pk>/',ProfileUpdateView.as_view(), name = 'edit-profile'),
+     path("user/profile/", login_required(ProfileCreateView.as_view()), name="create-profile"),
+     path('get/profile/<int:pk>/', login_required(ProfileDisplayView.as_view()), name = 'get_user_profile'),
+     path('delete/user-profile/<int:pk>/',login_required(ProfileDeleteView.as_view())),
+     path('edit/profile/<pk>/',login_required(ProfileUpdateView.as_view()), name = 'edit-profile'),
 
 
 
