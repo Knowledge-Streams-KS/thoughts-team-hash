@@ -1,3 +1,5 @@
+from typing import Any
+from django.db import models
 from django.shortcuts import render , HttpResponse,redirect
 from .forms import User_Signin_form
 from .models import User
@@ -11,20 +13,38 @@ from django.contrib.auth import logout
 
 
 
+def index(request):
+    return render(request, "users/index.html")
 
 # Create your views here.
 class UserCreateView(CreateView):
     model = User
     fields = ["username", "email","password","phone_number","first_name","last_name"]
-    success_url = "/users/getuser/{id}"    
-    template_name = "users/user_form.html"
+    success_url = "/users/getuser/{id}"     
+    # template_name = "users/user_form.html"  
     
     
+    def form_valid(self, form):
+        # Get the user instance from the form
+        user = form.save(commit=False)
+        
+        # Set the password to its hashed value
+        user.set_password(form.cleaned_data["password"])
 
+        # Save the user object with the hashed password
+        user.save()
+
+        return super().form_valid(form)
 
 class UserDisplayView(DetailView):
         model = User
+
         template_name = "users/profile_form.html"
+        
+    
+
+        
+        
 
 # from .forms import ProfileUpdateForm
 # class UserUpdateView(UpdateView):
@@ -36,7 +56,7 @@ class UserDisplayView(DetailView):
 # from .forms import UserUpdateForm
 class UserUpdateView(UpdateView):
     model = User
-    fields = ['phone_number']
+    fields = ["username", "email","phone_number","first_name","last_name"]
     # form_class = UserUpdateForm
     # template_name = "users/profile_update.html"
     success_url = "/loginin/"
@@ -48,10 +68,10 @@ class UserDeleteView(DeleteView):
      model = User
      success_url = "users/deactivate.html"
 
-    
+from .forms import User_Signin_form
 
 def user_signin_form(request):
-
+    
     if request.method == "GET":
         signin = User_Signin_form()
         
@@ -60,16 +80,22 @@ def user_signin_form(request):
 
 
     if request.method == "POST":
-    
         signin = User_Signin_form(request.POST)
         if signin.is_valid():
-             username = signin.cleaned_data["username"]
-             password= signin.cleaned_data["password"]
-       
+            # print(signin.cleaned_data["username"])
+            username = signin.cleaned_data["username"]
+            password= signin.cleaned_data["password"]
+
+            # username = request.POST.get("username")
+            # print(username)
+            # password= signin.cleaned_data["password"]
+            # print(username,password)
+            login_user(request,username,password)
     else:
             return render(request,"users/login.html",{"signin":signin })
             
-
+    # print(username,password)
+             
     return login_user(request,username,password)
 
 
@@ -77,16 +103,19 @@ def login_user(request,username,password):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        user_name = User.objects.get( username = user.username)
-        return redirect(f"/users/getuser/{request.id}")
+        user_id = request.user.id
+
+        return redirect(f"/users/getuser/{user_id}")
     else:
         return HttpResponse("Not valid")
       
 
 
-# def logout_view(request):
-#     logout(request)
-#     success_url = "/users/loginin/"
+def logout_view(request):
+    # user = request.user
+    logout(request)
+    return redirect ("/users/loginin/")
+    # success_url = "/users/loginin/"
 
 
 def post_thoughts(request):
@@ -109,11 +138,17 @@ def delete_user(request , id):
 
 from .models import UserProfile
 
+
 class ProfileCreateView(CreateView):
     model = UserProfile
     fields = ["bio","city","dob"]
     template_name = "users/profile/userprofile_form.html"
-    success_url = "/"
+    success_url = "/users/get/profile/{id}"
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)        
+
 
 class ProfileUpdateView(UpdateView):
     model = UserProfile
@@ -135,6 +170,18 @@ class ProfileDeleteView(DeleteView):
 class ProfileDisplayView(DetailView):
         model = UserProfile
         template_name = "users/profile/profile_detail.html"
+
+        def get_object(self, queryset=None):
+            # Check if a profile exists for the current user
+            try:
+                return UserProfile.objects.get(user=self.request.user)
+            except UserProfile.DoesNotExist:
+            # If a profile doesn't exist, create one
+                new_profile = UserProfile(user=self.request.user)
+                new_profile.save()
+                return new_profile
+
+
 
 
 # def update_user(request, id):

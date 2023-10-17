@@ -273,7 +273,6 @@
             </a>
           </li>
           
-          
           <li class="nav-item">
             <a class="nav-link" href="/posts/display_posts//">
               <i class="typcn typcn-compass menu-icon"></i>
@@ -282,53 +281,100 @@
             </a>
           </li>
          
+         
           
           
       </ul>
       </nav>
-    <!-- <div class="main-panel">        
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Add Comment</h4>
-                            
-                            <form method="post" class="post-form" action="{% url 'add_comment' post.id %}">
-                                {% csrf_token %}
-                                
-                                <input type="hidden" name="post_id" value="{{ post.id }}">
+<!-- <form method="post" class="post-form">
+    {% csrf_token %}
+   
+    {{ form.name }}
+     {{ form.user_id }}
+    <button type="submit" >Share Post</button>
+</form> -->
 
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Add Comment Here</label>
-                                    {{ comment_form.as_p }}
-                                </div>
-                                
-                                
-                                <button type="submit" class="btn btn-primary mr-2">Share Post</button>
-                                <button type="submit" class="btn btn-primary mr-2">Add Comment</button>
-                                <button class="btn btn-light">Cancel</button>
-                            </form>
-                        </div>
+<!-- <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <form method="post" style="max-width: 400px;">
+        {% csrf_token %}
+        
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.name.id_for_label }}" style="font-weight: bold;">Name of post:</label>
+            {{ form.name }}
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.user_id.id_for_label }}" style="font-weight: bold;">User ID:</label>
+            {{ form.user_id }}
+        </div>
+        
+        <button type="submit" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; cursor: pointer;">Share Post</button>
+    </form>
+</div> -->
+
+
+
+<div class="main-panel">        
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Thoughts shared with me</h4>
+                        {% for post in posts %}
+                        {{ post.name }}
+                          {{ post.user.username }}
+                          {{ post.content }}
+                          {% endfor %}
+
+                       
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
-
-
-    <div class="card mt-3">
-        <div class="card-body">
-            <h2>Comments:</h2>
-
-            <h4>Add a Comment:</h4>
-        
-            <form method="post" action="{% url 'add_comment' post.id %}">
-                <input type="hidden" name="post_id" value="{{ post.id }}">
-
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <button type="submit">Add Comment</button>
-            </form>
-        </div>
     </div>
+</div>
+
+
+  
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <!-- <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com</a> 2020</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard </a>templates from Bootstrapdash.com</span>
+            </div>
+          </footer> -->
+        <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- base:js -->
+<script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="{% static 'js/off-canvas.js' %}"></script>
+<script src="{% static 'js/hoverable-collapse.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+<script src="{% static 'js/todolist.js' %}"></script>
+<script src="{% static 'js/template.js' %}"></script>
+<!-- endinject -->
+<!-- plugin js for this page -->
+<script src="{% static 'vendors/typeahead.js/typeahead.bundle.min.js' %}"></script>
+<script src="{% static 'vendors/select2/select2.min.js' %}"></script>
+<!-- End plugin js for this page -->
+<!-- Custom js for this page-->
+<script src="{% static 'js/file-upload.js' %}"></script>
+<script src="{% static 'js/typeahead.js' %}"></script>
+<script src="{% static 'js/select2.js' %}"></script>
+<!-- End custom js for this page-->
+</body>
+
+</html>
+
+
+
+
